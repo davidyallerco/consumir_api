@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +19,7 @@ import pe.net.yallerco.consumir.model.entity.Persona;
 import pe.net.yallerco.consumir.service.PersonaService;
 
 @RestController
+@RequestMapping("/persona")
 public class PersonaController {
 
 	@Autowired
@@ -63,44 +65,44 @@ public class PersonaController {
 
 	// http://localhost:3333/personas/David/davidya@gmail.com/36
 
-	@GetMapping(value = "/personas/{nombre}/{email}/{edad}", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Persona> registrarPersona(
-			@PathVariable("nombre") String nombre, 
-			@PathVariable("email") String email,
-			@PathVariable("edad") int edad) {
-
-		Persona persona = new Persona(nombre, email, edad);
-		//llamando al metodo asincrono, digamos que demore 8 seg.
-		CompletableFuture<List<Persona>> resultado = personaService.llamarServicio(persona);
-		//haciendo otra cosa, y lo de arriba esta corriendo en otro hilo
-		for (int i = 0; i < 50; i++) {
-			System.out.println("esperando"+ i);
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		try {
-			return resultado.get(); //eso si cuando para hacer este return si tiene que esperar que el hilo termine
-		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	@GetMapping(value = "/personas/{nombre}/{email}/{edad}", produces = { MediaType.APPLICATION_JSON_VALUE })
+//	public List<Persona> registrarPersona(
+//			@PathVariable("nombre") String nombre, 
+//			@PathVariable("email") String email,
+//			@PathVariable("edad") int edad) {
+//
+//		Persona persona = new Persona(nombre, email, edad);
+//		//llamando al metodo asincrono, digamos que demore 8 seg.
+//		CompletableFuture<List<Persona>> resultado = personaService.llamarServicio(persona);
+//		//haciendo otra cosa, y lo de arriba esta corriendo en otro hilo
+//		for (int i = 0; i < 50; i++) {
+//			System.out.println("esperando"+ i);
+//			try {
+//				Thread.sleep(50);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		try {
+//			return resultado.get(); //eso si cuando para hacer este return si tiene que esperar que el hilo termine
+//		} catch (InterruptedException | ExecutionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 	
 	//**********************************************************************************
 		//************************RECIBE Y POSTERIOR CONSULTA A OTRO MICROSERVICIO *********
 
 	// busqueda de persona a traves de un rando de edades
-	@GetMapping(value = "/personas/{edad1}/{edad2}", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Persona> buscarEdades(@PathVariable("edad1") int edad1, @PathVariable("edad2") int edad2) {
-		Persona[] personas = restTemplate.getForObject(urlBase + "/contactos", Persona[].class);
-		return Arrays.stream(personas).filter(p -> p.getEdad() >= edad1 && p.getEdad() <= edad2)
-				.collect(Collectors.toList());
-	}
+//	@GetMapping(value = "/personas/{edad1}/{edad2}", produces = { MediaType.APPLICATION_JSON_VALUE })
+//	public List<Persona> buscarEdades(@PathVariable("edad1") int edad1, @PathVariable("edad2") int edad2) {
+//		Persona[] personas = restTemplate.getForObject(urlBase + "/contactos", Persona[].class);
+//		return Arrays.stream(personas).filter(p -> p.getEdad() >= edad1 && p.getEdad() <= edad2)
+//				.collect(Collectors.toList());
+//	}
 
 //    
 //    String url = "http://localhost:3333/cursos";
@@ -125,4 +127,34 @@ public class PersonaController {
 //    
 //    //delete
 
+    
+    
+    
+//    @GetMapping("/listar")
+//	public ResponseEntity<LibroResponseRest> listar() {
+//		ResponseEntity<LibroResponseRest> response = libroService.buscarLibros();
+//		return response;
+//	}
+//	
+//	@GetMapping("listar/{id}")
+//	public ResponseEntity<LibroResponseRest> consultaPorId(@PathVariable Long id){
+//		ResponseEntity<LibroResponseRest> response = libroService.buscarPorId(id);
+//		return response;
+//	}
+//	@PostMapping("guardar")
+//	public ResponseEntity<LibroResponseRest> crear(@RequestBody Libro request){
+//		ResponseEntity<LibroResponseRest> response =  libroService.crear(request);
+//		return response;
+//	}
+//	//actualizar
+//		@PutMapping("/actualizar/{id}")
+//		public ResponseEntity<LibroResponseRest> actualizar (@RequestBody Libro request, @PathVariable Long id){
+//			ResponseEntity<LibroResponseRest> response = libroService.actualizar(request, id);
+//			return response;
+//		}
+//		@DeleteMapping("eliminar/{id}")
+//		public ResponseEntity<LibroResponseRest> eliminar (@PathVariable Long id){
+//			ResponseEntity<LibroResponseRest> response = libroService.eliminar(id);
+//			return response;
+//		}
 }

@@ -10,6 +10,6 @@ public interface PaisesService {
 	List<Pais> buscarPaises(String name);
 	List<Pais> obtenerListaPaises();
 	
-	Pais agregar(String nombrePais,String capital,String codigo);
+	public void agregar(String nombrePais,String capital,String codigo);
 
 }

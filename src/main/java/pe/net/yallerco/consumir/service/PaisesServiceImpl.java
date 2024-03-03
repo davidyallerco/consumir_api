@@ -43,15 +43,15 @@ public class PaisesServiceImpl implements PaisesService{
 	}
 
 	@Override
-	public Pais agregar(String nombrePais, String capital, String codigo) {
+	public  void agregar(String nombrePais, String capital, String codigo) {
 		Paiss paiss = new Paiss();
 		paiss.setPais(nombrePais);
 		paiss.setCapital(capital);
 		paiss.setCodigo(codigo);
 		
 		restTemplate.postForLocation(url+"/agregar", paiss);
-		//Paiss[] paises = restTemplate.get
-		return null;
+		//Paiss[] paises = restTemplate.getForObject(url, responseType)
+		//return null;
 	}
 	
 

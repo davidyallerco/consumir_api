@@ -35,11 +35,12 @@ public class PaisesController {
 	
 	//CREAR
 	@GetMapping("/agregar/{nombrePais}/{capital}/{codigo}"/* path="", consumes={MediaType.APPLICATION_JSON_VALUE} */)
-	public Pais agregar(
+	public String agregar(
 			@PathVariable("nombrePais") String nombrePais, 
 			@PathVariable("capital") String capital,
 			@PathVariable("codigo") String codigo
 			){
-		return null; //paisService.agregar(nombrePais, capital,codigo);
+		 service.agregar(nombrePais, capital,codigo);
+		 return "hola mundo";
 	}
 }

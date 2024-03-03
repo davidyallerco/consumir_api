@@ -2,6 +2,7 @@ package pe.net.yallerco.consumir.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,42 @@ public class PersonaServiceImpl implements PersonaService {
     	restTemplate.postForLocation(urlBase+"/contactos", persona);
     	Persona[] personas = restTemplate.getForObject(urlBase+"/contactos", Persona[].class);
     	return CompletableFuture.completedFuture(Arrays.asList(personas));
+	}
+
+	@Override
+	public List<Persona> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Persona> findByLikeNombre(Persona persona) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<Persona> findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Persona add(Persona persona) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Persona update(Persona persona) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Persona delete(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
