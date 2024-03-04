@@ -1,43 +1,27 @@
 package pe.net.yallerco.consumir.model.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "paises")
+@Entity
 public class Pais {
-	private String nombre;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String pais;
 	private String capital;
-	private int poblacion;
-	private String bandera;
-	public Pais(String nombre, String capital, int poblacion, String bandera) {
-		super();
-		this.nombre = nombre;
-		this.capital = capital;
-		this.poblacion = poblacion;
-		this.bandera = bandera;
-	}
-	public Pais() {
-		super();
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getCapital() {
-		return capital;
-	}
-	public void setCapital(String capital) {
-		this.capital = capital;
-	}
-	public int getPoblacion() {
-		return poblacion;
-	}
-	public void setPoblacion(int poblacion) {
-		this.poblacion = poblacion;
-	}
-	public String getBandera() {
-		return bandera;
-	}
-	public void setBandera(String bandera) {
-		this.bandera = bandera;
-	}
+	private String codigo;
 
 }

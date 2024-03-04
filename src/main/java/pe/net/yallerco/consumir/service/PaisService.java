@@ -4,12 +4,10 @@ import java.util.List;
 
 import pe.net.yallerco.consumir.model.entity.Pais;
 
-public interface PaisesService {
+public interface PaisService {
 
-	List<Pais> obtenerPaises();
-	List<Pais> buscarPaises(String name);
-	List<Pais> obtenerListaPaises();
 	
+//	public List<Pais> agregar(String nombrePais,String capital,String codigo);
 	public void agregar(String nombrePais,String capital,String codigo);
 
 }
